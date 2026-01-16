@@ -24,9 +24,9 @@ export default function FavoriteScreen() {
   console.log("favoriteRecipesList", favoriteRecipesList);
 
   const renderItem = ({ item }) => (
-    <TouchableOpacity>
+    <TouchableOpacity
+      onPress={() => navigation.navigate("RecipeDetail", { ...item })}>
       <View style={styles.cardContainer}>
-    
         <Image style={styles.recipeImage} source={{ uri: item.recipeImage }} />
         <Text style={styles.recipeTitle}>
           {item.recipeName.length > 20
@@ -82,10 +82,11 @@ export default function FavoriteScreen() {
         }}>
         <Text style={{ color: "#fff" }}>Go back</Text>
       </TouchableOpacity>
-      <FlatList 
+      <FlatList
         data={favoriteRecipesList}
         keyExtractor={(item) => item.idFood}
-        renderItem={renderItem}/>
+        renderItem={renderItem}
+      />
     </>
   );
 }
